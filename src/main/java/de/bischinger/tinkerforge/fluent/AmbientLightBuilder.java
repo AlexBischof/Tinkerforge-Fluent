@@ -23,6 +23,11 @@ public class AmbientLightBuilder extends AbstractSensorBuilder<AmbientLightBuild
 	return this;
   }
 
+  public AmbientLightBuilder illuminanceListener(BrickletAmbientLight.IlluminanceListener listener) {
+	this.callbacks.add(new Callback(BrickletAmbientLight.IlluminanceListener.class, listener));
+	return this;
+  }
+
   @Override
   public Class<? extends Device> getDeviceClass() {
 	return BrickletAmbientLight.class;

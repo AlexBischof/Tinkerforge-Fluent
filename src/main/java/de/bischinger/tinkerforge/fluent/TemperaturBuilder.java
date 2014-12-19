@@ -18,6 +18,11 @@ public class TemperaturBuilder extends AbstractSensorBuilder<TemperaturBuilder> 
 	return this;
   }
 
+  public TemperaturBuilder temperaturListener(BrickletTemperature.TemperatureListener listener) {
+	this.callbacks.add(new Callback(BrickletTemperature.TemperatureListener.class, listener));
+	return this;
+  }
+
   @Override
   public Class<? extends Device> getDeviceClass() {
 	return BrickletTemperature.class;

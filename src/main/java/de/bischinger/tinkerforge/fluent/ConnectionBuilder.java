@@ -19,6 +19,7 @@ public class ConnectionBuilder {
 
   private String host = "127.0.0.1";
   private int port = 4223;
+  private long defaultCallbackPeriod = 100;
   private String uid;
 
   private List<Sensor<?>> sensorList = new ArrayList<>();
@@ -30,6 +31,11 @@ public class ConnectionBuilder {
 
   public ConnectionBuilder withPort(int port) {
 	this.port = port;
+	return this;
+  }
+
+  public ConnectionBuilder defaultCallbackPeriod(long defaultCallbackPeriod) {
+	this.defaultCallbackPeriod = defaultCallbackPeriod;
 	return this;
   }
 
@@ -81,9 +87,15 @@ public class ConnectionBuilder {
 
 		//Set callback period
 		try {
+		  //Use defaultCallback
+		  long period = callback.getPeriod();
+		  if (period == 0) {
+			period = defaultCallbackPeriod;
+		  }
+
 		  Method callbackPeriodMethod = deviceClass
 				  .getDeclaredMethod("set" + callbackName.replace("Period", TRESHOLD) + "CallbackPeriod", long.class);
-		  callbackPeriodMethod.invoke(sensor.getDevice(), callback.getPeriod());
+		  callbackPeriodMethod.invoke(sensor.getDevice(), period);
 		} catch (NoSuchMethodException e) {
 		  e.printStackTrace();
 		} catch (InvocationTargetException e) {

@@ -19,8 +19,18 @@ public class BarometerBuilder extends AbstractSensorBuilder<BarometerBuilder> {
 	return this;
   }
 
+  public BarometerBuilder airPressureListener(BrickletBarometer.AirPressureListener listener) {
+	this.callbacks.add(new Callback(BrickletBarometer.AirPressureListener.class, listener));
+	return this;
+  }
+
   public BarometerBuilder altitudeListener(BrickletBarometer.AltitudeListener listener, long period) {
 	this.callbacks.add(new Callback(BrickletBarometer.AltitudeListener.class, listener, period));
+	return this;
+  }
+
+  public BarometerBuilder altitudeListener(BrickletBarometer.AltitudeListener listener) {
+	this.callbacks.add(new Callback(BrickletBarometer.AltitudeListener.class, listener));
 	return this;
   }
 

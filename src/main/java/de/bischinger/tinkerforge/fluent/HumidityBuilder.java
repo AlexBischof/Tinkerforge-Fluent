@@ -1,7 +1,6 @@
 package de.bischinger.tinkerforge.fluent;
 
 import com.tinkerforge.BrickletHumidity;
-import com.tinkerforge.BrickletTemperature;
 import com.tinkerforge.Device;
 import de.bischinger.tinkerforge.fluent.data.Callback;
 
@@ -19,8 +18,19 @@ public class HumidityBuilder extends AbstractSensorBuilder<HumidityBuilder> {
 	return this;
   }
 
+  public HumidityBuilder analogValueListener(BrickletHumidity.AnalogValueListener listener) {
+	this.callbacks.add(new Callback(BrickletHumidity.AnalogValueListener.class, listener));
+	return this;
+  }
+
   public HumidityBuilder humidityListener(BrickletHumidity.HumidityListener listener, long period) {
 	this.callbacks.add(new Callback(BrickletHumidity.HumidityListener.class, listener, period));
+	return this;
+  }
+
+  public HumidityBuilder humidityListener(BrickletHumidity.HumidityListener listener) {
+	this.callbacks.add(new Callback(BrickletHumidity.HumidityListener.class, listener
+	));
 	return this;
   }
 

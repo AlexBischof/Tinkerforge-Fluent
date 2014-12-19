@@ -6,9 +6,13 @@ import com.tinkerforge.DeviceListener;
  * Created by Alexander Bischof on 16.12.14.
  */
 public class Callback {
-  private final long period;
+  private long period;
   private final DeviceListener listener;
   private final Class<? extends DeviceListener> listenerClass;
+
+  public Callback(Class<? extends DeviceListener> listenerClass, DeviceListener listener) {
+	this(listenerClass, listener, 0);
+  }
 
   public Callback(Class<? extends DeviceListener> listenerClass, DeviceListener listener, long period) {
 	this.listenerClass = listenerClass;
