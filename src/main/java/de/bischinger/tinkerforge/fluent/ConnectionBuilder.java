@@ -53,7 +53,7 @@ public class ConnectionBuilder {
 	return this;
   }
 
-  public void build() throws AlreadyConnectedException, IOException, TimeoutException, NotConnectedException {
+  public IPConnection build() throws AlreadyConnectedException, IOException, TimeoutException, NotConnectedException {
 	IPConnection ipcon = new IPConnection(); // Create IP connection
 
 	//Create Sensors
@@ -124,8 +124,6 @@ public class ConnectionBuilder {
 	  }
 	}
 
-	System.out.println("Press key to exit");
-	System.in.read();
-	ipcon.disconnect();
+	return ipcon;
   }
 }
